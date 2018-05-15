@@ -1,15 +1,24 @@
-# MAC0218-Projeto
-A flashcard project
+# README
 
-Disciplina: MAC0218 Técnicas de Programação II
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-Grupo:​ Lucas Marques, Guilherme Feulo, Ian.
+Things you may want to cover:
 
-Projeto: ​ Jogo Educacional
+* Ruby version
 
-Resumo: Aplicativo em nuvem voltado para o aprendizado, em que o usuário irá
-interagir com a máquina pelo browser em jogos dinâmicos para aprender conteúdos
-de forma rápida, prática e divertida. Ele criará um espaço de ensino que estende os
-métodos tradicionais de estudo e/ou que os aperfeiçoa e portabiliza. Trata-se de
-cartões de memorização com visualização automatizada e inteligente para o
-aprendizado a partir da repetição espaçada.
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
