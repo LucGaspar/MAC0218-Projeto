@@ -1,3 +1,4 @@
-%h1 Decks#index
-%p Find me in app/views/decks/index.html.haml
-%li= @user.email 
+%h1 My Decks
+%p= link_to 'new', new_deck_path
+- for deck in @deck 
+  %li=link_to deck.name, deck_path(deck.id)
