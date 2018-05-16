@@ -1,5 +1,7 @@
 class WelcomeController < ApplicationController
   def index
-     #redirect_to 'decks/index' if current_user != nil
+    if user_signed_in?
+        redirect_to decks_path 
+    end
   end
 end
