@@ -8,6 +8,7 @@
 %p
   %strong Number of Cards:
   = @deck.cards.count
+%p=link_to 'start', deck_start_path(@deck.id)
 %p=link_to 'new card', new_deck_card_path(@deck.id)
 %p
   %strong Card list

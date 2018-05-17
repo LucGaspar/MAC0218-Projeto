@@ -1,0 +1,10 @@
+%h1 APP start
+%p
+  =link_to 'Home', decks_path
+  =link_to 'Back', deck_path(@deck.id)
+%p=@card.front
+
+%p=@card.verse
+
+
+%p=link_to 'Next', deck_start_path

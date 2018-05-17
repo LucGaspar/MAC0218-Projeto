@@ -38,8 +38,14 @@ class DecksController < ApplicationController
         @deck = current_user.decks.all  
     end
 
+    def start
+        @deck= Deck.find(params[:deck_id])
+        @card = @deck.random_card
+    end
+
     private
     def deck_params
         params.require(:deck).permit(:name,:description)
     end
+
 end

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
   resources :decks do
+      get "start"
       resources :cards
   end
   devise_for :users
