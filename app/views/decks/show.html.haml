@@ -4,5 +4,13 @@
   = @deck.name 
 %p
   %strong Description:
-  = @deck.description 
+  = @deck.description
+%p
+  %strong Number of Cards:
+  = @deck.cards.count
+%p=link_to 'new card', new_deck_card_path(@deck.id)
+%p
+  %strong Card list
+-@deck.cards.each do |card| 
+  %li=link_to card.front, deck_card_path(@deck.id,card.id)
 

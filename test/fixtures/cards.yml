@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  front: MyText
+  verse: MyText
+  deck: one
+
+two:
+  front: MyText
+  verse: MyText
+  deck: two

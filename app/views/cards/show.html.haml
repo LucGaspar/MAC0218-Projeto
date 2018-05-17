@@ -1,0 +1,13 @@
+%p
+  =link_to 'Home', decks_path
+  =link_to 'Back', deck_path(@deck.id)
+%p
+  %strong Name:
+  = @card.front 
+%p
+  %strong Rear:
+  = @card.verse
+%p
+  =link_to 'edit', edit_deck_card_path(@deck.id,@card.id)
+  =link_to 'remove', deck_card_path(@deck.id,@card.id),method: :delete, data:{confirm: 'Are you sure?'}
+
