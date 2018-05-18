@@ -1,4 +1,5 @@
-#Wanki - the Anki app for Web (version 0.1)
+# Wanki - the Anki app for Web
+### (version 0.1)
 
 Wanki is a web Anki like application. Improve your memory skills by creating decks with association cards.
 
