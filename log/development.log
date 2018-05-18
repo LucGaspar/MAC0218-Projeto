@@ -13006,3 +13006,13 @@ Processing by DecksController#show as HTML
 Completed 200 OK in 96ms (Views: 88.7ms | ActiveRecord: 1.4ms)
 
 
+Started GET "/decks" for 127.0.0.1 at 2018-05-18 10:38:14 -0300
+Processing by DecksController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering decks/index.html.haml within layouts/application
+  [1m[36mDeck Load (0.3ms)[0m  [1m[34mSELECT "decks".* FROM "decks" WHERE "decks"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered decks/index.html.haml within layouts/application (5.4ms)
+  Rendered layouts/_footer.html.haml (2.6ms)
+Completed 200 OK in 51ms (Views: 46.7ms | ActiveRecord: 0.6ms)
+
+

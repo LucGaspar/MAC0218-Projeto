@@ -3,7 +3,14 @@
 
 Wanki is a web Anki like application. Improve your memory skills by creating decks with association cards.
 
-#### Configuration and Use
+#### Comoponents
+
+Guilherme Feulo do Espirito Santo
+
+Ian
+
+Lucas Marques Gasparino
+#### Configuração e uso
 
 uses Ruby version 2.4.1 and Rails 5.1.6.
 
