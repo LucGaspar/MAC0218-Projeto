@@ -1,24 +1,23 @@
-# README
+#Wanki - the Anki app for Web (version 0.1)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Wanki is a web Anki like application. Improve your memory skills by creating decks with association cards.
 
-Things you may want to cover:
 
-* Ruby version
+#### Configuration and Use
 
-* System dependencies
+uses Ruby version 2.4.1 and Rails 5.1.6.
+To run just clone this repo and do a "bundle install", and then start the rails server.
 
-* Configuration
+#### Working:
 
-* Database creation
+* User registration and login (uses devise gem)
+* Card deck CRUD
+* Card CRUD
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### To do:
+* add privacy (public/private) for decks
+* share decks among users with permissions (read/edit)
+* improve the algorithm for show cards to the user (using random)
+* Unity Tests
+* Integration Tests
+* improve the front-end (HTML/CSS) 
