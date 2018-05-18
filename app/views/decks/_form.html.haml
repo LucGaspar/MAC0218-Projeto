@@ -7,13 +7,13 @@
       %ul
         - @deck.errors.full_messages.each do |msg| 
           %li= msg 
-  %p
+  %p{:class=>"form-group"}
     = form.label :name 
     %br
-    = form.text_field :name 
-    %p
-      = form.label :description 
-      %br
-      = form.text_area :description 
-    %p
-      = form.submit 
+    = form.text_field :name  
+  %p{:class=>"form-group"}
+    = form.label :description 
+    %br
+    = form.text_area :description,:class=>"form-control" 
+  %p
+    =form.submit :class=>["btn","btn-default"]  
