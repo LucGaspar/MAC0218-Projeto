@@ -1,17 +1,23 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Wanki
+    / %meta{:content => ["text/html", "charset=UTF-8"], "http-equiv" => "Content-Type"}
+    %title Wanki - the Anki app for Web
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    - if user_signed_in? 
-      %li= link_to 'Logout', destroy_user_session_path, method: :delete
-    - else 
-      %li= link_to('Login', new_user_session_path)    
-      %li= link_to('Register', new_user_registration_path) 
-    - end
-    %li= aparece algo aqui
   %body
-    = yield
+    %header{:class=>["navbar"," navbar-fixed-top", "navbar-inverse"]}
+      %div{:class=>"container"}
+        =link_to "Wanki", welcome_index_path, id:"logo"
+        %nav
+          %ul{:class=>["nav"," navbar-nav"," navbar-right"]}         
+            - if user_signed_in?
+              %li= link_to current_user.email, welcome_index_path
+              %li= link_to 'Logout', destroy_user_session_path, method: :delete
+            - else 
+              %li= link_to('Login', new_user_session_path)    
+              %li= link_to('Register', new_user_registration_path) 
+    %div{:class=>"container"}        
+      = yield
+      = render 'layouts/footer'
