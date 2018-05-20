@@ -7,7 +7,7 @@ Wanki is a web Anki like application. Improve your memory skills by creating dec
 
 Guilherme Feulo do Espirito Santo
 
-Ian
+Ian Silva Galvão
 
 Lucas Marques Gasparino
 #### Configuração e uso
