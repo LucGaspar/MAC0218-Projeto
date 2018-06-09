@@ -14,6 +14,12 @@
   %p{:class=>"form-group"}
     = form.label :description 
     %br
-    = form.text_area :description,:class=>"form-control" 
+    = form.text_area :description
+    %br
+  %p
+    = form.check_box :shareable, :class => "checkbox"
+    Public
+    %br
   %p
     =form.submit :class=>["btn","btn-default"]  
+    %br

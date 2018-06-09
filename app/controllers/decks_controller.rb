@@ -45,7 +45,7 @@ class DecksController < ApplicationController
 
     private
     def deck_params
-        params.require(:deck).permit(:name,:description)
+        params.require(:deck).permit(:name,:description, :shareable)
     end
 
 end

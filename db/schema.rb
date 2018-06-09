@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20180516224313) do
     t.text "front"
     t.text "verse"
     t.integer "deck_id"
+    t.datetime "time_to_appear"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["deck_id"], name: "index_cards_on_deck_id"
@@ -25,9 +26,18 @@ ActiveRecord::Schema.define(version: 20180516224313) do
     t.string "name"
     t.text "description"
     t.integer "user_id"
+    t.boolean "shareable"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_decks_on_user_id"
+  end
+
+  create_table "decks_access", force: :cascade do |t|
+    t.boolean "access"
+    t.integer "user_id"
+    t.integer "deck_id"
+    t.index ["deck_id"], name: "index_decks_access_on_deck_id"
+    t.index ["user_id"], name: "index_decks_access_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

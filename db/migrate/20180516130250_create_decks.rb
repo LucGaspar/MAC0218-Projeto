@@ -4,8 +4,8 @@ class CreateDecks < ActiveRecord::Migration[5.1]
       t.string :name
       t.text :description
       t.references :user, foreign_key: true
-
-      t.timestamps
+      t.boolean :shareable
+      t.timestamps 
     end
   end
 end
