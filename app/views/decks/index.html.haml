@@ -1,7 +1,12 @@
 %h1 My Decks
 %p= link_to 'new', new_deck_path
-- for deck in @deck 
+- for deck in @deck
   %li
     =link_to deck.name, deck_path(deck.id)
     =link_to 'edit', edit_deck_path(deck.id)
     =link_to 'remove', deck_path(deck.id),method: :delete, data:{confirm: 'Are you sure?'}
+
+%h1 All Wanki Decks
+- for deck in Deck.where("shareable = 't'").all 
+  %li
+    =link_to deck.name + " (User: #{User.where("id = " + deck.user_id.to_s).all[0].email})" , deck_path(deck.id)
