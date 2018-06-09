@@ -6,6 +6,10 @@ class Deck < ApplicationRecord
 
 
   def random_card
-    cards.all[rand(cards.all.size)]
+    group = cards.where("time_to_appear < '#{Time.now.change({ hour: 23, min: 59, sec: 59}).strftime("%Y-%m-%d %H:%M:%S")}'").order("time_to_appear ASC")
+    if (!group.empty?)
+    	return group.all[0]
+    end
+    
   end
 end

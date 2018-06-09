@@ -11,7 +11,6 @@ class CardsController < ApplicationController
 
     def create
         @deck = Deck.find(params[:deck_id])
-        print card_params
         @card = @deck.cards.create(card_params)
         if @deck.save
             redirect_to @deck 

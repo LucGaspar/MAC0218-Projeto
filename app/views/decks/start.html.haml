@@ -2,9 +2,17 @@
 %p
   =link_to 'Home', decks_path
   =link_to 'Back', deck_path(@deck.id)
-%p=@card.front
 
-%p=@card.verse
+  - if @card == nil
+    %div
+      %h2
+        No more cards to study today
+      %ul
+  - else
+    %p=@card.front
+    
+    %p=@card.verse
 
-
-%p=link_to 'Next', deck_start_path
+    %p=link_to 'Wrong', deck_start_path({:deck_id => @deck.id,  :card_id => @card.id, :grade => 0})
+    %p=link_to 'Regular', deck_start_path({:deck_id => @deck.id, :card_id => @card.id, :grade => 1})
+    %p=link_to 'Good', deck_start_path({:deck_id => @deck.id, :card_id => @card.id, :grade => 2})

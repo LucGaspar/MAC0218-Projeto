@@ -39,13 +39,25 @@ class DecksController < ApplicationController
     end
 
     def start
-        @deck= Deck.find(params[:deck_id])
-        @card = @deck.random_card
+        if (params[:card_id] == nil)
+            params[:card_id] = 0
+        end
+        @deck = Deck.find(params[:deck_id])
+
+        if (params[:grade].to_i == 0)
+            x = DateTime.now.change({ hour: 23, min: 59, sec: rand(0..58)}).strftime("%Y-%m-%d %H:%M:%S")
+        else
+            x = (DateTime.now + params[:grade].to_i).strftime("%Y-%m-%d %H:%M:%S")
+        end
+
+        Card.where("deck_id = #{params[:deck_id]} AND id = #{params[:card_id]}").update_all("time_to_appear = '#{x}'")
+        
+        @card = @deck.random_card()
     end
 
     private
     def deck_params
-        params.require(:deck).permit(:name,:description, :shareable)
+        params.require(:deck).permit(:name, :description, :shareable)
     end
 
 end
