@@ -1,19 +1,21 @@
 %p=link_to 'Home', decks_path
-%div{:class=>"right"}
+%div{:class=>"left"}
   %div{:class=>"jumbotron"}
-    
-    %h1 
-      = @deck.name 
-    %p
-      = @deck.description
+    %h1= @deck.name 
     %p
       %strong Number of Cards:
       = @deck.cards.count
-    =link_to 'start', deck_start_path(@deck.id) ,:class=>["btn","btn-defaulti","start"]   
-%div{:class=>"card-list"}
-  %p=link_to 'new card', new_deck_card_path(@deck.id)
-  %p
-    %strong Card list
-  -@deck.cards.sort_by{|o| o.front}.each do |card| 
-    %li=link_to card.front, deck_card_path(@deck.id,card.id)
+    %p
+      = @deck.description
+    =link_to 'start', deck_start_path(@deck.id) ,:class=>"btn btn-default"   
+%div{:class=>"right"}
+  %div{:class=> "jumbotron"}
+    %p
+      %strong Card list
+      -@deck.cards.sort_by{|o| o.front}.each do |card| 
+        %li
+          =card.front
+          =link_to 'edit', edit_deck_card_path(@deck.id,card.id)
+          =link_to 'remove', deck_card_path(@deck.id,card.id),method: :delete, data:{confirm: 'Are you sure?'}
+    %p{:class=>"bottom-right"}=link_to 'New Card', new_deck_card_path(@deck.id)
 

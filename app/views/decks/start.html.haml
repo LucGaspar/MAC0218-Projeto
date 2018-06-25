@@ -1,18 +1,23 @@
-%h1 APP start
-%p
+
+%div
   =link_to 'Home', decks_path
   =link_to 'Back', deck_path(@deck.id)
-
-  - if @card == nil
-    %div
-      %h2
-        No more cards to study today
-      %ul
-  - else
-    %p=@card.front
-    
-    %p=@card.verse
-
-    %p=link_to 'Wrong', deck_start_path({:deck_id => @deck.id,  :card_id => @card.id, :grade => 0})
-    %p=link_to 'Regular', deck_start_path({:deck_id => @deck.id, :card_id => @card.id, :grade => 1})
-    %p=link_to 'Good', deck_start_path({:deck_id => @deck.id, :card_id => @card.id, :grade => 2})
+%h1
+  %div{:class=>"start"}
+    %div{:class=>"jumbotron"}
+      %h1
+        %div{:class=>"upper"}=@deck.name
+        - if @card == nil
+          %div{:class=>"card"} 
+            No more cards to study today
+        - else
+ 
+          %div{:class=>"card", :onclick=>"turn(this)"}
+            %div{:class=>"card-face card-face-front"}
+              =@card.front
+            %div{:class=>"card-face card-face-back"}
+              =@card.verse
+          %div  
+            =link_to 'Wrong', deck_start_path({:deck_id => @deck.id,  :card_id => @card.id, :grade => 0}),:class=>"btn btn-default"
+            =link_to 'Regular', deck_start_path({:deck_id => @deck.id, :card_id => @card.id, :grade => 1}), :class=>"btn btn-default"
+            =link_to 'Good', deck_start_path({:deck_id => @deck.id, :card_id => @card.id, :grade => 2}), :class=>"btn btn-default"

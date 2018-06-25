@@ -13,3 +13,8 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+var turn = function(card) {
+    card.classList.toggle("is-flipped");
+};
+
