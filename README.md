@@ -21,11 +21,9 @@ To run just clone this repo and do a "bundle install", and then start the rails 
 * User registration and login (uses devise gem)
 * Card deck CRUD
 * Card CRUD
-
-#### To do:
 * add privacy (public/private) for decks
-* share decks among users with permissions (read/edit)
 * improve the algorithm for show cards to the user (using random)
-* Unity Tests
 * Integration Tests
-* improve the front-end (HTML/CSS) 
+* Card animation on flip
+#### To do:
+* share decks among users with permissions (read/edit)
