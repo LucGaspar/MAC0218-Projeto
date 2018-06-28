@@ -11140,3 +11140,70 @@ Processing by DecksController#index as HTML
 Completed 200 OK in 76ms (Views: 68.8ms | ActiveRecord: 1.9ms)
 
 
+Started GET "/" for 127.0.0.1 at 2018-06-25 14:14:33 -0300
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.haml within layouts/application
+  Rendered welcome/index.html.haml within layouts/application (48.4ms)
+  Rendered layouts/_footer.html.haml (3.9ms)
+Completed 200 OK in 2476ms (Views: 2460.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-25 14:14:38 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/feulo/.rvm/gems/ruby-2.4.1/gems/devise-4.4.3/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/feulo/.rvm/gems/ruby-2.4.1/gems/devise-4.4.3/app/views/devise/shared/_links.html.erb (12.1ms)
+  Rendered /home/feulo/.rvm/gems/ruby-2.4.1/gems/devise-4.4.3/app/views/devise/sessions/new.html.erb within layouts/application (132.4ms)
+  Rendered layouts/_footer.html.haml (2.2ms)
+Completed 200 OK in 333ms (Views: 316.5ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2018-06-25 14:14:44 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"cGG578UmmXfAP1JJ6n6/ypRYRBiKB+4rNN+jBmDE+BmVZ5XmEyTHxkzhMKEpn0ofi6aB2o27YvvOUR7zZa/7XA==", "user"=>{"email"=>"guife@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "guife@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = ?, "last_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["current_sign_in_at", "2018-06-25 17:14:44.570817"], ["last_sign_in_at", "2018-06-25 07:56:24.654399"], ["sign_in_count", 4], ["updated_at", "2018-06-25 17:14:44.572097"], ["id", 2]]
+  [1m[35m (91.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/decks
+Completed 302 Found in 558ms (ActiveRecord: 92.9ms)
+
+
+Started GET "/decks" for 127.0.0.1 at 2018-06-25 14:14:44 -0300
+Processing by DecksController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering decks/index.html.haml within layouts/application
+  [1m[36mDeck Load (0.3ms)[0m  [1m[34mSELECT "decks".* FROM "decks" WHERE "decks"."user_id" = ?[0m  [["user_id", 2]]
+  [1m[36mDeck Load (0.2ms)[0m  [1m[34mSELECT "decks".* FROM "decks" WHERE (shareable = 't')[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (id = 1)[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (id = 2)[0m
+  Rendered decks/index.html.haml within layouts/application (19.4ms)
+  Rendered layouts/_footer.html.haml (2.3ms)
+Completed 200 OK in 122ms (Views: 51.5ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/decks/2" for 127.0.0.1 at 2018-06-25 14:14:51 -0300
+Processing by DecksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.4ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering decks/show.html.haml within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."deck_id" = ?[0m  [["deck_id", 2]]
+  [1m[36mCard Load (0.2ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = ?[0m  [["deck_id", 2]]
+  Rendered decks/show.html.haml within layouts/application (21.5ms)
+  Rendered layouts/_footer.html.haml (2.5ms)
+Completed 200 OK in 131ms (Views: 56.1ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/decks/2/start" for 127.0.0.1 at 2018-06-25 14:15:00 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"deck_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.2ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCard Load (0.2ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = ?[0m  [["deck_id", 2]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (19.5ms)
+  Rendered layouts/_footer.html.haml (3.2ms)
+Completed 200 OK in 116ms (Views: 72.4ms | ActiveRecord: 0.6ms)
+
+
