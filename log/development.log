@@ -11850,3 +11850,548 @@ Processing by Devise::SessionsController#new as HTML
 Completed 200 OK in 226ms (Views: 55.9ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/" for 127.0.0.1 at 2018-07-03 00:43:29 -0300
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.haml within layouts/application
+  Rendered welcome/index.html.haml within layouts/application (5.2ms)
+  Rendered layouts/_footer.html.haml (2.5ms)
+Completed 200 OK in 250ms (Views: 237.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2018-07-03 00:43:33 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering /home/feulo/.rvm/gems/ruby-2.4.1/gems/devise-4.4.3/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/feulo/.rvm/gems/ruby-2.4.1/gems/devise-4.4.3/app/views/devise/shared/_links.html.erb (2.8ms)
+  Rendered /home/feulo/.rvm/gems/ruby-2.4.1/gems/devise-4.4.3/app/views/devise/registrations/new.html.erb within layouts/application (30.0ms)
+  Rendered layouts/_footer.html.haml (8.7ms)
+Completed 200 OK in 424ms (Views: 394.1ms | ActiveRecord: 5.9ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2018-07-03 00:43:39 -0300
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VzPJvYFRl7iuTBvUwzHOX9M2HlIOMqXUJh6Su1lTxh48MBDABsHgSTSViRwfdjLWy8NFIH55hyhBGUnWmi7EnA==", "user"=>{"email"=>"guifeulo@hotmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "guifeulo@hotmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "guifeulo@hotmail.com"], ["encrypted_password", "$2a$11$4l5POtOpzKcVRXUfJvsdBOS4S9ezpY4hh2953.62JBGXLnxuQ4QK6"], ["created_at", "2018-07-03 03:43:39.962269"], ["updated_at", "2018-07-03 03:43:39.962269"]]
+  [1m[35m (92.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "users" SET "sign_in_count" = $1, "current_sign_in_at" = $2, "last_sign_in_at" = $3, "current_sign_in_ip" = $4, "last_sign_in_ip" = $5, "updated_at" = $6 WHERE "users"."id" = $7[0m  [["sign_in_count", 1], ["current_sign_in_at", "2018-07-03 03:43:40.057285"], ["last_sign_in_at", "2018-07-03 03:43:40.057285"], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_ip", "127.0.0.1"], ["updated_at", "2018-07-03 03:43:40.058329"], ["id", 1]]
+  [1m[35m (19.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/decks
+Completed 302 Found in 299ms (ActiveRecord: 113.8ms)
+
+
+Started GET "/decks" for 127.0.0.1 at 2018-07-03 00:43:40 -0300
+Processing by DecksController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering decks/index.html.haml within layouts/application
+  [1m[36mDeck Load (0.6ms)[0m  [1m[34mSELECT "decks".* FROM "decks" WHERE "decks"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mDeck Load (0.4ms)[0m  [1m[34mSELECT "decks".* FROM "decks" WHERE (shareable = 't')[0m
+  Rendered decks/index.html.haml within layouts/application (6.2ms)
+  Rendered layouts/_footer.html.haml (2.3ms)
+Completed 200 OK in 64ms (Views: 41.3ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/decks/new" for 127.0.0.1 at 2018-07-03 00:43:42 -0300
+Processing by DecksController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering decks/new.html.haml within layouts/application
+  Rendered decks/_form.html.haml (9.8ms)
+  Rendered decks/new.html.haml within layouts/application (13.5ms)
+  Rendered layouts/_footer.html.haml (2.6ms)
+Completed 200 OK in 73ms (Views: 59.1ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/decks" for 127.0.0.1 at 2018-07-03 00:43:52 -0300
+Processing by DecksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"PbzIggQp8pRiWXgKkv8iM62T+qE9LLPNiPVJjbzMsxXHYVoikgiqp9qh6/SxfUyNp6x3tHQTFPkJlu15QOX/bA==", "deck"=>{"name"=>"Francês", "description"=>"hehehahea", "shareable"=>"1"}, "commit"=>"Create Deck"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeck Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "decks" WHERE "decks"."name" = $1 AND "decks"."user_id" = $2 LIMIT $3[0m  [["name", "Francês"], ["user_id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "decks" ("name", "description", "user_id", "shareable", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Francês"], ["description", "hehehahea"], ["user_id", 1], ["shareable", "t"], ["created_at", "2018-07-03 03:43:52.301624"], ["updated_at", "2018-07-03 03:43:52.301624"]]
+  [1m[35m (83.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeck Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "decks" WHERE "decks"."name" = $1 AND ("decks"."id" != $2) AND "decks"."user_id" = $3 LIMIT $4[0m  [["name", "Francês"], ["id", 1], ["user_id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/decks/1
+Completed 302 Found in 114ms (ActiveRecord: 87.7ms)
+
+
+Started GET "/decks/1" for 127.0.0.1 at 2018-07-03 00:43:52 -0300
+Processing by DecksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.2ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering decks/show.html.haml within layouts/application
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  [1m[36mCard Load (0.2ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendered decks/show.html.haml within layouts/application (12.0ms)
+  Rendered layouts/_footer.html.haml (2.5ms)
+Completed 200 OK in 56ms (Views: 46.6ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/decks/1/cards/new" for 127.0.0.1 at 2018-07-03 00:43:54 -0300
+Processing by CardsController#new as HTML
+  Parameters: {"deck_id"=>"1"}
+  [1m[36mDeck Load (0.4ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering cards/new.html.haml within layouts/application
+  Rendered cards/_form.html.haml (5.3ms)
+  Rendered cards/new.html.haml within layouts/application (8.9ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_footer.html.haml (2.5ms)
+Completed 200 OK in 73ms (Views: 51.7ms | ActiveRecord: 3.4ms)
+
+
+Started POST "/decks/1/cards" for 127.0.0.1 at 2018-07-03 00:44:04 -0300
+Processing by CardsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZEK+l6dRgMr3OJl4qMBhk9SB5YvzaUx4YOZn575fFVRAIfhLrYf6t2TDPwIfsyuvAZAtH3hfreeIqLOQ2W+dPw==", "card"=>{"front"=>"bonjour", "verse"=>"bom dia"}, "commit"=>"Create Card", "deck_id"=>"1"}
+  [1m[36mDeck Load (0.3ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCard Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "cards" WHERE "cards"."deck_id" = $1 AND "cards"."front" = $2 LIMIT $3[0m  [["deck_id", 1], ["front", "bonjour"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "cards" ("front", "verse", "deck_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["front", "bonjour"], ["verse", "bom dia"], ["deck_id", 1], ["created_at", "2018-07-03 03:44:04.705455"], ["updated_at", "2018-07-03 03:44:04.705455"]]
+  [1m[35m (57.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "decks" WHERE "decks"."name" = $1 AND ("decks"."id" != $2) AND "decks"."user_id" = $3 LIMIT $4[0m  [["name", "Francês"], ["id", 1], ["user_id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/decks/1
+Completed 302 Found in 74ms (ActiveRecord: 60.1ms)
+
+
+Started GET "/decks/1" for 127.0.0.1 at 2018-07-03 00:44:04 -0300
+Processing by DecksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.3ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering decks/show.html.haml within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  [1m[36mCard Load (0.4ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendered decks/show.html.haml within layouts/application (9.8ms)
+  Rendered layouts/_footer.html.haml (3.8ms)
+Completed 200 OK in 60ms (Views: 55.0ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/decks/1/cards/new" for 127.0.0.1 at 2018-07-03 00:44:09 -0300
+Processing by CardsController#new as HTML
+  Parameters: {"deck_id"=>"1"}
+  [1m[36mDeck Load (0.4ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering cards/new.html.haml within layouts/application
+  Rendered cards/_form.html.haml (6.0ms)
+  Rendered cards/new.html.haml within layouts/application (8.7ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_footer.html.haml (3.9ms)
+Completed 200 OK in 69ms (Views: 65.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/decks/1/cards" for 127.0.0.1 at 2018-07-03 00:44:17 -0300
+Processing by CardsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"M7cAAGyKwbwUUsOF/a9mrhyQyPShb94LvIPMnlDD4a4X1EbcZly7wYepZf9K3CySyYEAYCpZP5RUzRjpN/NpxQ==", "card"=>{"front"=>"au revoir", "verse"=>"até logo"}, "commit"=>"Create Card", "deck_id"=>"1"}
+  [1m[36mDeck Load (0.3ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCard Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "cards" WHERE "cards"."deck_id" = $1 AND "cards"."front" = $2 LIMIT $3[0m  [["deck_id", 1], ["front", "au revoir"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "cards" ("front", "verse", "deck_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["front", "au revoir"], ["verse", "até logo"], ["deck_id", 1], ["created_at", "2018-07-03 03:44:17.340278"], ["updated_at", "2018-07-03 03:44:17.340278"]]
+  [1m[35m (68.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "decks" WHERE "decks"."name" = $1 AND ("decks"."id" != $2) AND "decks"."user_id" = $3 LIMIT $4[0m  [["name", "Francês"], ["id", 1], ["user_id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/decks/1
+Completed 302 Found in 80ms (ActiveRecord: 71.0ms)
+
+
+Started GET "/decks/1" for 127.0.0.1 at 2018-07-03 00:44:17 -0300
+Processing by DecksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.2ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering decks/show.html.haml within layouts/application
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  [1m[36mCard Load (0.3ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendered decks/show.html.haml within layouts/application (9.9ms)
+  Rendered layouts/_footer.html.haml (3.3ms)
+Completed 200 OK in 63ms (Views: 59.2ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/decks/1/start" for 127.0.0.1 at 2018-07-03 00:44:19 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"deck_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.3ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.5ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 1.3ms)
+
+
+  
+NoMethodError (undefined method `beginning_of_day' for nil:NilClass):
+  
+app/models/deck.rb:21:in `block in ozniak'
+app/models/deck.rb:9:in `each'
+app/models/deck.rb:9:in `ozniak'
+app/controllers/decks_controller.rb:62:in `start'
+Started GET "/decks/1/start" for 127.0.0.1 at 2018-07-03 00:58:21 -0300
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DecksController#start as HTML
+  Parameters: {"deck_id"=>"1"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.5ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.5ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (6.9ms)
+  Rendered layouts/_footer.html.haml (2.5ms)
+Completed 200 OK in 330ms (Views: 242.5ms | ActiveRecord: 13.8ms)
+
+
+Started GET "/decks/1" for 127.0.0.1 at 2018-07-03 00:58:30 -0300
+Processing by DecksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.4ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering decks/show.html.haml within layouts/application
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  [1m[36mCard Load (0.4ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendered decks/show.html.haml within layouts/application (12.6ms)
+  Rendered layouts/_footer.html.haml (9.1ms)
+Completed 200 OK in 111ms (Views: 103.6ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/decks/1/start" for 127.0.0.1 at 2018-07-03 00:58:33 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"deck_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.4ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.4ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (13.5ms)
+  Rendered layouts/_footer.html.haml (5.0ms)
+Completed 200 OK in 101ms (Views: 90.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/decks/1" for 127.0.0.1 at 2018-07-03 00:58:34 -0300
+Processing by DecksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.5ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering decks/show.html.haml within layouts/application
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  [1m[36mCard Load (0.7ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendered decks/show.html.haml within layouts/application (19.8ms)
+  Rendered layouts/_footer.html.haml (4.3ms)
+Completed 200 OK in 103ms (Views: 93.7ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/decks/1/start" for 127.0.0.1 at 2018-07-03 01:00:31 -0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DecksController#start as HTML
+  Parameters: {"deck_id"=>"1"}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (1.1ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 65ms (ActiveRecord: 9.4ms)
+
+
+  
+NoMethodError (undefined method `cards' for nil:NilClass):
+  
+app/models/deck.rb:9:in `ozniak'
+app/controllers/decks_controller.rb:62:in `start'
+Started GET "/decks/1/start" for 127.0.0.1 at 2018-07-03 01:03:44 -0300
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DecksController#start as HTML
+  Parameters: {"deck_id"=>"1"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.4ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 56ms (ActiveRecord: 8.2ms)
+
+
+  
+NameError (undefined local variable or method `this' for #<Deck:0x00559fa4030630>):
+  
+app/models/deck.rb:9:in `ozniak'
+app/controllers/decks_controller.rb:62:in `start'
+Started GET "/decks/1/start" for 127.0.0.1 at 2018-07-03 01:04:45 -0300
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DecksController#start as HTML
+  Parameters: {"deck_id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 42ms (ActiveRecord: 4.2ms)
+
+
+  
+SyntaxError (/home/feulo/Faculdade/BCC/MAC0218/caralho/MAC0218-Projeto/app/models/deck.rb:29: syntax error, unexpected keyword_end, expecting end-of-input):
+  
+app/models/deck.rb:29: syntax error, unexpected keyword_end, expecting end-of-input
+app/controllers/decks_controller.rb:46:in `start'
+Started GET "/decks/1" for 127.0.0.1 at 2018-07-03 01:04:45 -0300
+Processing by DecksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.5ms)
+
+
+  
+SyntaxError (/home/feulo/Faculdade/BCC/MAC0218/caralho/MAC0218-Projeto/app/models/deck.rb:29: syntax error, unexpected keyword_end, expecting end-of-input):
+  
+app/models/deck.rb:29: syntax error, unexpected keyword_end, expecting end-of-input
+app/controllers/decks_controller.rb:34:in `show'
+Started GET "/decks/1/cards/new" for 127.0.0.1 at 2018-07-03 01:04:47 -0300
+Processing by CardsController#new as HTML
+  Parameters: {"deck_id"=>"1"}
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/home/feulo/Faculdade/BCC/MAC0218/caralho/MAC0218-Projeto/app/models/deck.rb:29: syntax error, unexpected keyword_end, expecting end-of-input):
+  
+app/models/deck.rb:29: syntax error, unexpected keyword_end, expecting end-of-input
+app/controllers/cards_controller.rb:3:in `new'
+Started GET "/" for 127.0.0.1 at 2018-07-03 01:05:02 -0300
+Processing by WelcomeController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/decks
+Completed 302 Found in 4ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/decks" for 127.0.0.1 at 2018-07-03 01:05:02 -0300
+Processing by DecksController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.5ms)
+
+
+  
+SyntaxError (/home/feulo/Faculdade/BCC/MAC0218/caralho/MAC0218-Projeto/app/models/deck.rb:29: syntax error, unexpected keyword_end, expecting end-of-input):
+  
+app/models/deck.rb:29: syntax error, unexpected keyword_end, expecting end-of-input
+app/controllers/decks_controller.rb:38:in `index'
+Started GET "/decks" for 127.0.0.1 at 2018-07-03 01:05:27 -0300
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DecksController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering decks/index.html.haml within layouts/application
+  [1m[36mDeck Load (0.6ms)[0m  [1m[34mSELECT "decks".* FROM "decks" WHERE "decks"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[36mDeck Load (0.5ms)[0m  [1m[34mSELECT "decks".* FROM "decks" WHERE (shareable = 't')[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (id = 1)[0m
+  Rendered decks/index.html.haml within layouts/application (30.0ms)
+  Rendered layouts/_footer.html.haml (2.8ms)
+Completed 200 OK in 324ms (Views: 261.3ms | ActiveRecord: 11.8ms)
+
+
+Started GET "/decks/1" for 127.0.0.1 at 2018-07-03 01:05:30 -0300
+Processing by DecksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.5ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering decks/show.html.haml within layouts/application
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  [1m[36mCard Load (0.7ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendered decks/show.html.haml within layouts/application (61.3ms)
+  Rendered layouts/_footer.html.haml (3.0ms)
+Completed 200 OK in 153ms (Views: 126.5ms | ActiveRecord: 7.2ms)
+
+
+Started GET "/decks/1/start" for 127.0.0.1 at 2018-07-03 01:05:31 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"deck_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.5ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.6ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (11.6ms)
+  Rendered layouts/_footer.html.haml (2.3ms)
+Completed 200 OK in 81ms (Views: 70.6ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/decks/1/start?card_id=2&grade=0" for 127.0.0.1 at 2018-07-03 01:05:40 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"card_id"=>"2", "grade"=>"0", "deck_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.4ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.5ms)[0m  [1m[34mSELECT  "cards".* FROM "cards" WHERE "cards"."deck_id" = $1 AND "cards"."id" = $2 LIMIT $3[0m  [["deck_id", 1], ["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (31.0ms)[0m  [1m[33mUPDATE "cards" SET e_factor = 2.5, played_at = '2018-07-03 01:05:40', n_days = 0 WHERE (deck_id = 1 AND id = 2)[0m
+  [1m[36mCard Load (0.5ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (7.4ms)
+  Rendered layouts/_footer.html.haml (2.2ms)
+Completed 200 OK in 85ms (Views: 44.5ms | ActiveRecord: 32.9ms)
+
+
+Started GET "/decks/1/start?card_id=1&grade=0" for 127.0.0.1 at 2018-07-03 01:05:45 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"card_id"=>"1", "grade"=>"0", "deck_id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.5ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.5ms)[0m  [1m[34mSELECT  "cards".* FROM "cards" WHERE "cards"."deck_id" = $1 AND "cards"."id" = $2 LIMIT $3[0m  [["deck_id", 1], ["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (29.2ms)[0m  [1m[33mUPDATE "cards" SET e_factor = 2.5, played_at = '2018-07-03 01:05:45', n_days = 0 WHERE (deck_id = 1 AND id = 1)[0m
+  [1m[36mCard Load (0.4ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (4.8ms)
+  Rendered layouts/_footer.html.haml (2.2ms)
+Completed 200 OK in 93ms (Views: 54.0ms | ActiveRecord: 31.2ms)
+
+
+Started GET "/decks/1/start?card_id=2&grade=2" for 127.0.0.1 at 2018-07-03 01:05:59 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"card_id"=>"2", "grade"=>"2", "deck_id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.6ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.9ms)[0m  [1m[34mSELECT  "cards".* FROM "cards" WHERE "cards"."deck_id" = $1 AND "cards"."id" = $2 LIMIT $3[0m  [["deck_id", 1], ["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (53.2ms)[0m  [1m[33mUPDATE "cards" SET e_factor = 2.46, played_at = '2018-07-03 01:05:59', n_days = 1 WHERE (deck_id = 1 AND id = 2)[0m
+  [1m[36mCard Load (0.5ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (6.0ms)
+  Rendered layouts/_footer.html.haml (2.5ms)
+Completed 200 OK in 118ms (Views: 50.8ms | ActiveRecord: 55.9ms)
+
+
+Started GET "/decks/1/start?card_id=2&grade=2" for 127.0.0.1 at 2018-07-03 01:06:01 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"card_id"=>"2", "grade"=>"2", "deck_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.5ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.6ms)[0m  [1m[34mSELECT  "cards".* FROM "cards" WHERE "cards"."deck_id" = $1 AND "cards"."id" = $2 LIMIT $3[0m  [["deck_id", 1], ["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (30.1ms)[0m  [1m[33mUPDATE "cards" SET e_factor = 2.42, played_at = '2018-07-03 01:06:01', n_days = 2 WHERE (deck_id = 1 AND id = 2)[0m
+  [1m[36mCard Load (0.4ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (5.8ms)
+  Rendered layouts/_footer.html.haml (2.7ms)
+Completed 200 OK in 82ms (Views: 42.9ms | ActiveRecord: 32.0ms)
+
+
+Started GET "/decks/1/start?card_id=1&grade=2" for 127.0.0.1 at 2018-07-03 01:06:02 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"card_id"=>"1", "grade"=>"2", "deck_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.3ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.7ms)[0m  [1m[34mSELECT  "cards".* FROM "cards" WHERE "cards"."deck_id" = $1 AND "cards"."id" = $2 LIMIT $3[0m  [["deck_id", 1], ["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (51.6ms)[0m  [1m[33mUPDATE "cards" SET e_factor = 2.46, played_at = '2018-07-03 01:06:02', n_days = 1 WHERE (deck_id = 1 AND id = 1)[0m
+  [1m[36mCard Load (0.5ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (6.8ms)
+  Rendered layouts/_footer.html.haml (2.6ms)
+Completed 200 OK in 124ms (Views: 55.8ms | ActiveRecord: 53.8ms)
+
+
+Started GET "/decks/1/start?card_id=1&grade=2" for 127.0.0.1 at 2018-07-03 01:06:03 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"card_id"=>"1", "grade"=>"2", "deck_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.3ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.7ms)[0m  [1m[34mSELECT  "cards".* FROM "cards" WHERE "cards"."deck_id" = $1 AND "cards"."id" = $2 LIMIT $3[0m  [["deck_id", 1], ["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (37.6ms)[0m  [1m[33mUPDATE "cards" SET e_factor = 2.42, played_at = '2018-07-03 01:06:03', n_days = 2 WHERE (deck_id = 1 AND id = 1)[0m
+  [1m[36mCard Load (0.5ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (6.5ms)
+  Rendered layouts/_footer.html.haml (2.7ms)
+Completed 200 OK in 105ms (Views: 55.4ms | ActiveRecord: 39.7ms)
+
+
+Started GET "/decks/1/start?card_id=1&grade=2" for 127.0.0.1 at 2018-07-03 01:06:04 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"card_id"=>"1", "grade"=>"2", "deck_id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.4ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.6ms)[0m  [1m[34mSELECT  "cards".* FROM "cards" WHERE "cards"."deck_id" = $1 AND "cards"."id" = $2 LIMIT $3[0m  [["deck_id", 1], ["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (64.8ms)[0m  [1m[33mUPDATE "cards" SET e_factor = 2.38, played_at = '2018-07-03 01:06:04', n_days = 3 WHERE (deck_id = 1 AND id = 1)[0m
+  [1m[36mCard Load (0.4ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (6.0ms)
+  Rendered layouts/_footer.html.haml (3.3ms)
+Completed 200 OK in 137ms (Views: 59.1ms | ActiveRecord: 67.1ms)
+
+
+Started GET "/decks/1/start?card_id=1&grade=2" for 127.0.0.1 at 2018-07-03 01:06:04 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"card_id"=>"1", "grade"=>"2", "deck_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.4ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.5ms)[0m  [1m[34mSELECT  "cards".* FROM "cards" WHERE "cards"."deck_id" = $1 AND "cards"."id" = $2 LIMIT $3[0m  [["deck_id", 1], ["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (22.2ms)[0m  [1m[33mUPDATE "cards" SET e_factor = 2.34, played_at = '2018-07-03 01:06:04', n_days = 4 WHERE (deck_id = 1 AND id = 1)[0m
+  [1m[36mCard Load (1.3ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (5.9ms)
+  Rendered layouts/_footer.html.haml (4.3ms)
+Completed 200 OK in 98ms (Views: 62.5ms | ActiveRecord: 24.9ms)
+
+
+Started GET "/decks/1/start?card_id=1&grade=2" for 127.0.0.1 at 2018-07-03 01:06:04 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"card_id"=>"1", "grade"=>"2", "deck_id"=>"1"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.5ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.7ms)[0m  [1m[34mSELECT  "cards".* FROM "cards" WHERE "cards"."deck_id" = $1 AND "cards"."id" = $2 LIMIT $3[0m  [["deck_id", 1], ["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (36.5ms)[0m  [1m[33mUPDATE "cards" SET e_factor = 2.3, played_at = '2018-07-03 01:06:04', n_days = 5 WHERE (deck_id = 1 AND id = 1)[0m
+  [1m[36mCard Load (0.6ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (16.0ms)
+  Rendered layouts/_footer.html.haml (2.5ms)
+Completed 200 OK in 153ms (Views: 98.7ms | ActiveRecord: 39.1ms)
+
+
+Started GET "/decks/1/start?card_id=2&grade=2" for 127.0.0.1 at 2018-07-03 01:06:05 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"card_id"=>"2", "grade"=>"2", "deck_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.3ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.7ms)[0m  [1m[34mSELECT  "cards".* FROM "cards" WHERE "cards"."deck_id" = $1 AND "cards"."id" = $2 LIMIT $3[0m  [["deck_id", 1], ["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (19.1ms)[0m  [1m[33mUPDATE "cards" SET e_factor = 2.38, played_at = '2018-07-03 01:06:05', n_days = 3 WHERE (deck_id = 1 AND id = 2)[0m
+  [1m[36mCard Load (1.2ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (4.4ms)
+  Rendered layouts/_footer.html.haml (2.2ms)
+Completed 200 OK in 71ms (Views: 39.6ms | ActiveRecord: 21.9ms)
+
+
+Started GET "/decks/1/start?card_id=2&grade=0" for 127.0.0.1 at 2018-07-03 01:06:08 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"card_id"=>"2", "grade"=>"0", "deck_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.4ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (2.4ms)[0m  [1m[34mSELECT  "cards".* FROM "cards" WHERE "cards"."deck_id" = $1 AND "cards"."id" = $2 LIMIT $3[0m  [["deck_id", 1], ["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (114.6ms)[0m  [1m[33mUPDATE "cards" SET e_factor = 2.38, played_at = '2018-07-03 01:06:08', n_days = 0 WHERE (deck_id = 1 AND id = 2)[0m
+  [1m[36mCard Load (0.7ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (10.1ms)
+  Rendered layouts/_footer.html.haml (3.1ms)
+Completed 200 OK in 197ms (Views: 65.1ms | ActiveRecord: 118.8ms)
+
+
+Started GET "/decks/1/start?card_id=2&grade=0" for 127.0.0.1 at 2018-07-03 01:06:10 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"card_id"=>"2", "grade"=>"0", "deck_id"=>"1"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.4ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.7ms)[0m  [1m[34mSELECT  "cards".* FROM "cards" WHERE "cards"."deck_id" = $1 AND "cards"."id" = $2 LIMIT $3[0m  [["deck_id", 1], ["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (35.4ms)[0m  [1m[33mUPDATE "cards" SET e_factor = 2.38, played_at = '2018-07-03 01:06:10', n_days = 0 WHERE (deck_id = 1 AND id = 2)[0m
+  [1m[36mCard Load (0.7ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (9.5ms)
+  Rendered layouts/_footer.html.haml (3.0ms)
+Completed 200 OK in 113ms (Views: 61.5ms | ActiveRecord: 38.1ms)
+
+
+Started GET "/decks/1/start?card_id=2&grade=0" for 127.0.0.1 at 2018-07-03 01:06:10 -0300
+Processing by DecksController#start as HTML
+  Parameters: {"card_id"=>"2", "grade"=>"0", "deck_id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.4ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCard Load (0.7ms)[0m  [1m[34mSELECT  "cards".* FROM "cards" WHERE "cards"."deck_id" = $1 AND "cards"."id" = $2 LIMIT $3[0m  [["deck_id", 1], ["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (23.9ms)[0m  [1m[33mUPDATE "cards" SET e_factor = 2.38, played_at = '2018-07-03 01:06:10', n_days = 0 WHERE (deck_id = 1 AND id = 2)[0m
+  [1m[36mCard Load (0.5ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendering decks/start.html.haml within layouts/application
+  Rendered decks/start.html.haml within layouts/application (5.4ms)
+  Rendered layouts/_footer.html.haml (2.5ms)
+Completed 200 OK in 83ms (Views: 45.7ms | ActiveRecord: 26.2ms)
+
+
+Started GET "/decks/1" for 127.0.0.1 at 2018-07-03 01:06:13 -0300
+Processing by DecksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDeck Load (0.4ms)[0m  [1m[34mSELECT  "decks".* FROM "decks" WHERE "decks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering decks/show.html.haml within layouts/application
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  [1m[36mCard Load (0.4ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."deck_id" = $1[0m  [["deck_id", 1]]
+  Rendered decks/show.html.haml within layouts/application (10.8ms)
+  Rendered layouts/_footer.html.haml (2.5ms)
+Completed 200 OK in 71ms (Views: 64.9ms | ActiveRecord: 2.0ms)
+
+

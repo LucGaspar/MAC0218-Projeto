@@ -17,10 +17,11 @@ class Deck < ApplicationRecord
       else
         pn = 7 + e_factor ** (n_days - 2)
       end
-
-      if ((date.beginning_of_day + 86400 * pn.round).to_date <= Time.now.beginning_of_day.to_date || pn == 0)
-        list << card
-      end
+    #  if(!date.nil?)
+    #    if ((date.beginning_of_day + 86400 * pn.round).to_date <= Time.now.beginning_of_day.to_date || pn == 0)
+          list << card
+    #    end
+    #  end
     end
     return list[0]
   end
