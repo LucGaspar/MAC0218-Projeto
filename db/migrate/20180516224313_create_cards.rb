@@ -4,7 +4,9 @@ class CreateCards < ActiveRecord::Migration[5.1]
       t.text :front
       t.text :verse
       t.references :deck, foreign_key: true
-      t.datetime :time_to_appear, default: -> { 'CURRENT_TIMESTAMP' }
+      t.integer :n_days, default: -> { 0 }
+      t.float   :e_factor, default: -> { 2.5 }
+      t.datetime :played_at, default: -> { 'CURRENT_TIMESTAMP' }
       t.timestamps 
     end
   end

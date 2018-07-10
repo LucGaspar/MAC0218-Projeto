@@ -42,17 +42,24 @@ class DecksController < ApplicationController
         if (params[:card_id] == nil)
             params[:card_id] = 0
         end
+
         @deck = Deck.find(params[:deck_id])
 
-        if (params[:grade].to_i == 0)
-            x = DateTime.now.change({ hour: 23, min: 59, sec: rand(0..58)}).strftime("%Y-%m-%d %H:%M:%S")
-        else
-            x = (DateTime.now + params[:grade].to_i).strftime("%Y-%m-%d %H:%M:%S")
+        if (params[:grade] != nil)
+            card = @deck.cards.find_by_id(params[:card_id])
+            q = params[:grade].to_i
+            
+            if (params[:grade].to_i == 0)
+                n_days = 0
+                ef = card[:e_factor]
+            else
+                n_days = card[:n_days] + 1
+                ef = card[:e_factor] + (0.1 - (3 - q) * (0.08 + (5 - q) * 0.02))
+            end
+            Card.where("deck_id = #{params[:deck_id]} AND id = #{params[:card_id]}").update_all("e_factor = #{ef}, played_at = '#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}', n_days = #{n_days}")
         end
 
-        Card.where("deck_id = #{params[:deck_id]} AND id = #{params[:card_id]}").update_all("time_to_appear = '#{x}'")
-        
-        @card = @deck.random_card()
+        @card = @deck.ozniak()
     end
 
     private

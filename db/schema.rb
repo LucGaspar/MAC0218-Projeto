@@ -16,7 +16,9 @@ ActiveRecord::Schema.define(version: 20180516224313) do
     t.text "front"
     t.text "verse"
     t.integer "deck_id"
-    t.datetime "time_to_appear"
+    t.integer "n_days", default: 0
+    t.float "e_factor", default: 2.5
+    t.datetime "played_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["deck_id"], name: "index_cards_on_deck_id"
